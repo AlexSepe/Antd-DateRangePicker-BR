@@ -103,12 +103,13 @@
                 </property>
             </propertyGroup>
             <propertyGroup caption="Locale">
-                <property key="locale" type="enumeration" defaultValue="zh_CN" >
+                <property key="locale" type="enumeration" defaultValue="pt_BR" >
                     <caption>Locale</caption>
                     <description>Set the display language. Currently only support zh_CN and en_US </description>
                     <enumerationValues>
                         <enumerationValue key="zh_CN">zh_CN</enumerationValue>
                         <enumerationValue key="en_US">en_US</enumerationValue>
+                        <enumerationValue key="pt_BR">pt_BR</enumerationValue>
                     </enumerationValues>
                 </property>
             </propertyGroup>

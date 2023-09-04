@@ -10,7 +10,7 @@ export type PickerEnum = "date" | "week" | "month" | "quarter" | "year";
 
 export type PlacementEnum = "bottomLeft" | "bottomRight" | "topLeft" | "topRight";
 
-export type LocaleEnum = "zh_CN" | "en_US";
+export type LocaleEnum = "zh_CN" | "en_US" | "pt_BR";
 
 export type DisableDateModeEnum = "off" | "positive" | "negative";
 

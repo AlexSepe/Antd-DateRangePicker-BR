@@ -11,8 +11,10 @@ import "./ui/AntdDateRangePicker.css";
 import { RangePickerProps } from "antd/es/date-picker";
 import zh_CN from "antd/es/date-picker/locale/zh_CN";
 import en_US from "antd/es/date-picker/locale/en_US";
+import pt_BR from "antd/es/date-picker/locale/pt_BR";
 import "dayjs/locale/zh-cn";
 import "dayjs/locale/en";
+import "dayjs/locale/es";
 
 import "./ui/AntdDateRangePicker.scss";
 
@@ -38,7 +40,10 @@ export class AntdDateRangePicker extends Component<AntdDateRangePickerContainerP
 
         // === sub group Locale ===
         // this part should be at the first because we should change the locale before any dayjs function invoked.
-        if (props.locale === "en_US") {
+        if (props.locale === "pt_BR") {
+            dayjs.locale("pt-br");
+            pickerProps.locale = pt_BR;
+        } else if (props.locale === "en_US") {
             dayjs.locale("en");
             pickerProps.locale = en_US;
         } else {
