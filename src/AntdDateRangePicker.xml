@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.antddaterangepicker.AntdDateRangePicker" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Antd Date Range Picker</name>
+    <description>A powerful Mendix pluggable widget used to pick date and time. It brings the ant-deign widget DatePicker into Mendix and implements almost all the features of the original widget</description>
+    <studioProCategory>Ant Design Widgets</studioProCategory>
+    <studioCategory>Ant Design Widgets</studioCategory>
+    <helpUrl>https://github.com/zjh1943/mendix-antd-date-range-picker/blob/main/README.md</helpUrl>
+    <icon />
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Main">
+                <property key="picker" type="enumeration" defaultValue="date">
+                    <caption>Picker type</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="date">Date</enumerationValue>
+                        <enumerationValue key="week">Week</enumerationValue>
+                        <enumerationValue key="month">Month</enumerationValue>
+                        <enumerationValue key="quarter">Quarter</enumerationValue>
+                        <enumerationValue key="year">Year</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <!-- <property key="defaultValueStart" type="attribute" required="false">
+                    <caption>Default start time</caption>
+                    <description>The default start time value when the widget shows.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+                <property key="defaultValueEnd" type="attribute" required="false">
+                    <caption>Default end time</caption>
+                    <description>The default end time value when the widget shows.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property> -->
+                <property key="format" type="string" required="false">
+                    <caption>Format</caption>
+                    <description>The format of DateTime value shown on the input frame. e.g. YYYY/MM/DD HH:mm:ss.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Control">
+                <property key="valueStart" type="attribute" required="false">
+                    <caption>Start time</caption>
+                    <description>The start time value.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+                <property key="valueEnd" type="attribute" required="false">
+                    <caption>End time</caption>
+                    <description>The end time value.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+                <property key="onChange" type="action" required="false">
+                    <caption>On value change</caption>
+                    <description>Will be triggered when eithter start value or end value is changed.</description>
+                </property>               
+            </propertyGroup>
+            <propertyGroup caption="Views">
+                <property key="showTime" type="boolean" required="true" defaultValue="false">
+                    <caption>Show time</caption>
+                    <description>Whether show time picker on the picker pannel. If yes, you'd better add "HH:mm:ss" to the `format` property to show the time part</description>
+                </property>
+                <property key="placement" type="enumeration" defaultValue="bottomLeft">
+                    <caption>Plannel placement</caption>
+                    <description>On which place is the picker pannel placed to the input frame.</description>
+                    <enumerationValues>
+                        <enumerationValue key="bottomLeft">Bottom Left</enumerationValue>
+                        <enumerationValue key="bottomRight">Bottom Right</enumerationValue>
+                        <enumerationValue key="topLeft">Top Left</enumerationValue>
+                        <enumerationValue key="topRight">Top Right</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="System">
+                <systemProperty key="Editability" />
+                <systemProperty key="Visibility" />
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Advanced">
+            <propertyGroup caption="Main">
+                <property key="allowEmptyStart" type="boolean" defaultValue="false">
+                    <caption>Allow start time empty.</caption>
+                    <description></description>
+                </property>
+                <property key="allowEmptyEnd" type="boolean" defaultValue="false">
+                    <caption>Allow end time empty.</caption>
+                    <description></description>
+                </property>
+                <property key="autoFocus" type="boolean" required="true" defaultValue="false">
+                    <caption>Auto focus</caption>
+                    <description>Whether auto get focus when shown.</description>
+                </property>
+                <property key="inputReadOnly" type="boolean" required="true" defaultValue="false">
+                    <caption>Input readonly</caption>
+                    <description>Set the input as readonly.So that, when on mobile device, the virtual keyboard will not be open.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Locale">
+                <property key="locale" type="enumeration" defaultValue="zh_CN" >
+                    <caption>Locale</caption>
+                    <description>Set the display language. Currently only support zh_CN and en_US </description>
+                    <enumerationValues>
+                        <enumerationValue key="zh_CN">zh_CN</enumerationValue>
+                        <enumerationValue key="en_US">en_US</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Picker Open State">
+                <property key="open" type="attribute" required="false">
+                    <caption>Picker open</caption>
+                    <description>An attribute to control the open status of the picker.</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean" />
+                    </attributeTypes>
+                </property>
+                <property key="onOpenChange" type="action" required="false">
+                    <caption>On open change</caption>
+                    <description>Will be triggered when the picker pannel is opened or closed.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Picker Value">
+                <!-- <property key="onPickerValueChange" type="action" required="false">
+                    <caption>On value change</caption>
+                    <description>Will be triggered when user select a date on the picker pannel.</description>
+                </property>
+                <property key="pickerValueStart" type="attribute" required="false">
+                    <caption>Start time</caption>
+                    <description>The start DateTime value that a user just selected on the picker pannel. Only use this value when you want to get the value in the action handler of the above `On value change `.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+                <property key="pickerValueEnd" type="attribute" required="false">
+                    <caption>End time </caption>
+                    <description>The end DateTime value that a user just selected on the picker pannel. Only use this value when you want to get the value in the action handler of the above `On value change`.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property> -->
+                <property key="defaultPickerValueStart" type="attribute" required="false">
+                    <caption>Default start time</caption>
+                    <description>The default start time value on the picker pannel.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+                <property key="defaultPickerValueEnd" type="attribute" required="false">
+                    <caption>Default end time</caption>
+                    <description>The default end time value on the picker pannel.</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Disable Date">
+                <property key="disableDateMode" type="enumeration" defaultValue="off">
+                    <caption>Disable mode</caption>
+                    <description>Disable some dates, so that some invalid dates can not be choosen by user. 'Off' means no date will be disabled. 'Positive' means the dates you set below are the only available dates. 'Negative' means that all the dates excepet for the dates you set below are available.</description>
+                    <enumerationValues>
+                        <enumerationValue key="off">Off</enumerationValue>
+                        <enumerationValue key="positive">Positive</enumerationValue>
+                        <enumerationValue key="negative">Negative</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="disableDateTemparyToggle" type="attribute" required="false">
+                    <caption>Tempary toggle</caption>
+                    <description>Use this dynamic attribute to control the tempary open state of the disabling function. Commonly, you do not need to config this property. Unless you want to close the disabling function tempary during the application running.</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean" />
+                    </attributeTypes>
+                </property>
+                <property key="disableDatesDatasource" type="datasource" isList="true" required="false">
+                    <caption>Disable datasource</caption>
+                    <description></description>
+                </property>
+                <property key="disableDatesAttribute" type="attribute" dataSource="disableDatesDatasource">
+                    <caption>Disable attribute</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Cutomize View">
+            <propertyGroup caption="Common">
+                <property key="size" type="enumeration" required="true" defaultValue="middle">
+                    <caption>Input frame size</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="small">Small</enumerationValue>
+                        <enumerationValue key="middle">Middle</enumerationValue>
+                        <enumerationValue key="large">Large</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="placeholderStart" type="string" required="false">
+                    <caption>Start placeholder</caption>
+                    <description></description>
+                </property>
+                <property key="placeholderEnd" type="string" required="false">
+                    <caption>End placeholder</caption>
+                    <description></description>
+                </property>
+                <property key="allowClear" type="boolean" required="true" defaultValue="true">
+                    <caption>Allow clear</caption>
+                    <description>Whether show clear button.</description>
+                </property>
+                <property key="bordered" type="boolean" required="true" defaultValue="true">
+                    <caption>Bordered</caption>
+                    <description>Whether show border out of the input frame.</description>
+                </property>
+                <property key="popupClassName" type="string" required="false">
+                    <caption>Class of popup</caption>
+                    <description></description>
+                </property>
+                <!-- <property key="popupStyle" type="string" required="false">
+                    <caption>Style of popup</caption>
+                    <description></description>
+                </property> -->
+            </propertyGroup>
+            <propertyGroup caption="Shortcuts">
+                <property key="shortcutsDatasource" type="datasource" isList="true" required="false">
+                    <caption>Datasource of shortcuts</caption>
+                    <description>You can use this to dsiplay some shortcut buttons on the picker pannel to reduce the time to choose a right date.</description>
+                </property>
+                <property key="shortcutsLabelAttribute" type="attribute" dataSource="shortcutsDatasource">
+                    <caption>Attribute of label</caption>
+                    <description>Label will be shown on the shortcut button.</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="shortcutsValueStartAttribute" type="attribute" dataSource="shortcutsDatasource">
+                    <caption>Start date</caption>
+                    <description>When user click the shortcut button, the corresponding start date will be selected. </description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+                <property key="shortcutsValueEndAttribute" type="attribute" dataSource="shortcutsDatasource">
+                    <caption>End date</caption>
+                    <description>When user click the shortcut button, the corresponding end date will be selected. </description>
+                    <attributeTypes>
+                        <attributeType name="DateTime" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Custom Pannel Footer">
+                <property key="showCustomFooter" type="boolean" defaultValue="false">
+                    <caption>Show custom footer</caption>
+                    <description>Whether show additional widgets on the footer of the picker pannel.</description>
+                </property>
+                <property key="pannelFooterContent" type="widgets" required="false">
+                    <caption>Custom pannel footer</caption>
+                    <description>Put additional widgets on the footer of the picker pannel.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
